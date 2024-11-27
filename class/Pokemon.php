@@ -42,6 +42,19 @@ abstract class Pokemon
     {
         return $this->nomCapaciteSpeciale;
     }
+
+    public function getNom(): string
+    {
+        return $this->nom;
+    }
+
+    public function getPointsDeVie(): string
+    {
+
+        return $this->pointsDeVie;
+    }
+
+
 }
 
 class PokemonFeu extends Pokemon
@@ -54,8 +67,16 @@ class PokemonFeu extends Pokemon
     public function capaciteSpeciale($adversaire): void
     {
         if ($adversaire->type == 'Plante') {
-            $adversaire->recevoirDegats($this->pointsAttaque * self::DEGATS_SUP);
+            $adversaire->recevoirDegats($this->pointsAttaque + self::DEGATS_SUP);
+            var_dump($this->pointsAttaque);
+            var_dump($adversaire->pointsDeVie);
+            var_dump( self::DEGATS_SUP);
+
         }
+        else {
+            $adversaire->recevoirDegats($this->pointsAttaque);
+        }
+
     }
 }
 
@@ -69,7 +90,7 @@ class PokemonEau extends Pokemon
     public function capaciteSpeciale($adversaire): void
     {
         if ($adversaire->type == 'Feu') {
-            $adversaire->recevoirDegats($this->pointsAttaque * self::DEGATS_SUP);
+            $adversaire->recevoirDegats($this->pointsAttaque + self::DEGATS_SUP);
         }
     }
 }
@@ -84,7 +105,7 @@ class PokemonPlante extends Pokemon
     public function capaciteSpeciale($adversaire): void
     {
         if ($adversaire->type == 'Eau') {
-            $adversaire->recevoirDegats($this->pointsAttaque * self::DEGATS_SUP);
+            $adversaire->recevoirDegats($this->pointsAttaque + self::DEGATS_SUP);
         }
     }
 }
