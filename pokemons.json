@@ -3,47 +3,56 @@
     {
       "nom": "Dracaufeu",
       "type": "feu",
-      "attaques": [{ "nom": "Déflagration", "degats": 110, "precision": 85 }]
+      "attaques": [{ "nom": "Déflagration", "degats": 110, "precision": 85 }],
+      "defense": 8
     },
     {
       "nom": "Arcanin",
       "type": "feu",
-      "attaques": [{ "nom": "Boutefeu", "degats": 120, "precision": 100 }]
+      "attaques": [{ "nom": "Boutefeu", "degats": 120, "precision": 100 }],
+      "defense": 6
     },
     {
       "nom": "Pyrobut",
       "type": "feu",
-      "attaques": [{ "nom": "Ballon Brûlant", "degats": 120, "precision": 90 }]
+      "attaques": [{ "nom": "Ballon Brûlant", "degats": 120, "precision": 90 }],
+      "defense": 11
     },
     {
       "nom": "Tortank",
       "type": "eau",
-      "attaques": [{ "nom": "Pistolet à O", "degats": 40, "precision": 100 }]
+      "attaques": [{ "nom": "Pistolet à O", "degats": 40, "precision": 100 }],
+      "defense": 4
     },
     {
       "nom": "Léviator",
       "type": "eau",
-      "attaques": [{ "nom": "Hydroqueue", "degats": 90, "precision": 90 }]
+      "attaques": [{ "nom": "Hydroqueue", "degats": 90, "precision": 90 }],
+      "defense": 10
     },
     {
       "nom": "Milobellus",
       "type": "eau",
-      "attaques": [{ "nom": "Surf", "degats": 90, "precision": 100 }]
+      "attaques": [{ "nom": "Surf", "degats": 90, "precision": 100 }],
+      "defense": 9
     },
     {
       "nom": "Florizarre",
       "type": "plante",
-      "attaques": [{ "nom": "Canon Graine", "degats": 80, "precision": 100 }]
+      "attaques": [{ "nom": "Canon Graine", "degats": 80, "precision": 100 }],
+      "defense": 7
     },
     {
       "nom": "Jungko",
       "type": "plante",
-      "attaques": [{ "nom": "Mégafouet", "degats": 120, "precision": 85 }]
+      "attaques": [{ "nom": "Mégafouet", "degats": 120, "precision": 85 }],
+      "defense": 11
     },
     {
       "nom": "Roséra",
       "type": "plante",
-      "attaques": [{ "nom": "Bomb-Beurk", "degats": 90, "precision": 100 }]
+      "attaques": [{ "nom": "Bomb-Beurk", "degats": 90, "precision": 100 }],
+      "defense": 9
     }
   ]
 }
