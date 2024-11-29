@@ -85,7 +85,7 @@ class PokemonFeu extends Pokemon
     public function capaciteSpeciale($adversaire): void
     {
         $precision = $this->capaciteSpeciale->getPrecision();
-        if (rand(0, 100 > $precision) || rand(0, 100) > $precision) {
+        if (rand(0, 100 > $precision)) {
             echo 'Attaque ratée';
             return;
         }
@@ -108,7 +108,7 @@ class PokemonEau extends Pokemon
     public function capaciteSpeciale($adversaire): void
     {
         $precision = $this->capaciteSpeciale->getPrecision();
-        if (rand(0, 100 > $precision) || rand(0, 100) > $precision) {
+        if (rand(0, 100 > $precision)) {
             echo 'Attaque ratée';
             return;
         }
@@ -131,7 +131,7 @@ class PokemonPlante extends Pokemon
     public function capaciteSpeciale($adversaire): void
     {
         $precision = $this->capaciteSpeciale->getPrecision();
-        if (rand(0, 100 > $precision) || rand(0, 100) > $precision) {
+        if (rand(0, 100 > $precision)) {
             echo 'Attaque ratée';
             return;
         }
