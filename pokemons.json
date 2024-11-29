@@ -1,0 +1,73 @@
+{
+  "types": {
+    "Feu": [
+      {
+        "pokemon": "Dracaufeu",
+        "attaques": [
+          { "nom": "Lance-Flammes", "degats": 90, "precision": 100 },
+          { "nom": "Déflagration", "degats": 110, "precision": 85 }
+        ]
+      },
+      {
+        "pokemon": "Arcanin",
+        "attaques": [
+          { "nom": "Boutefeu", "degats": 120, "precision": 100 },
+          { "nom": "Crocs Feu", "degats": 65, "precision": 95 }
+        ]
+      },
+      {
+        "pokemon": "Pyrobut",
+        "attaques": [
+          { "nom": "Ballon Brûlant", "degats": 120, "precision": 90 },
+          { "nom": "Nitrocharge", "degats": 50, "precision": 100 }
+        ]
+      }
+    ],
+    "Eau": [
+      {
+        "pokemon": "Tortank",
+        "attaques": [
+          { "nom": "Hydrocanon", "degats": 110, "precision": 80 },
+          { "nom": "Pistolet à O", "degats": 40, "precision": 100 }
+        ]
+      },
+      {
+        "pokemon": "Léviator",
+        "attaques": [
+          { "nom": "Cascade", "degats": 80, "precision": 100 },
+          { "nom": "Hydroqueue", "degats": 90, "precision": 90 }
+        ]
+      },
+      {
+        "pokemon": "Milobellus",
+        "attaques": [
+          { "nom": "Surf", "degats": 90, "precision": 100 },
+          { "nom": "Ébullition", "degats": 80, "precision": 100 }
+        ]
+      }
+    ],
+    "Plante": [
+      {
+        "pokemon": "Florizarre",
+        "attaques": [
+          { "nom": "Tempête Verte", "degats": 130, "precision": 90 },
+          { "nom": "Canon Graine", "degats": 80, "precision": 100 }
+        ]
+      },
+      {
+        "pokemon": "Jungko",
+        "attaques": [
+          { "nom": "Lame-Feuille", "degats": 90, "precision": 100 },
+          { "nom": "Mégafouet", "degats": 120, "precision": 85 }
+        ]
+      },
+      {
+        "pokemon": "Roséra",
+        "attaques": [
+          { "nom": "Giga-Sangsue", "degats": 75, "precision": 100 },
+          { "nom": "Bomb-Beurk", "degats": 90, "precision": 100 }
+        ]
+      }
+    ]
+  }
+}
