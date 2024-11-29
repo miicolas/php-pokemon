@@ -23,7 +23,7 @@ abstract class Pokemon
 
     public function attaquer($adversaire): void
     {
-        $adversaire->pointsDeVie -= $this->pointsAttaque - $adversaire->defense;
+        $adversaire->recevoirDegats($this->pointsAttaque - $adversaire->defense);
     }
 
     public function recevoirDegats($degats): void
@@ -53,8 +53,6 @@ abstract class Pokemon
 
         return $this->pointsDeVie;
     }
-
-
 }
 
 class PokemonFeu extends Pokemon
@@ -70,13 +68,10 @@ class PokemonFeu extends Pokemon
             $adversaire->recevoirDegats($this->pointsAttaque + self::DEGATS_SUP);
             var_dump($this->pointsAttaque);
             var_dump($adversaire->pointsDeVie);
-            var_dump( self::DEGATS_SUP);
-
-        }
-        else {
+            var_dump(self::DEGATS_SUP);
+        } else {
             $adversaire->recevoirDegats($this->pointsAttaque);
         }
-
     }
 }
 
