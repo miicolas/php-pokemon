@@ -1,9 +1,11 @@
 <?php
 
 require_once 'interfaces/Combattant.php';
+require_once 'traits/Soins.php';
 
 abstract class Pokemon implements Combattant
 {
+    use Soins;
     protected string $nom;
     protected string $type;
     protected int $pointsDeVie;
@@ -23,6 +25,11 @@ abstract class Pokemon implements Combattant
         $this->defense = $defense;
         $this->capaciteNormale = $capaciteNormale;
         $this->capaciteSpeciale = $capaciteSpeciale;
+    }
+
+    public function seSoigner($pv)
+    {
+        $this->soigner($pv);
     }
 
     public function utiliserAttaqueSpeciale($adversaire)
