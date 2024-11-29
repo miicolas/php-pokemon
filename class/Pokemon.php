@@ -1,29 +1,43 @@
 <?php
 
-abstract class Pokemon
+require_once 'interfaces/Combattant.php';
+
+abstract class Pokemon implements Combattant
 {
     protected string $nom;
     protected string $type;
     protected int $pointsDeVie;
     protected int $pointsAttaque;
     protected int $defense;
-    protected string $nomCapaciteSpeciale;
+    protected Capacite $capaciteNormale;
+    protected Capacite $capaciteSpeciale;
 
-    const DEGATS_SUP = 1;
+    const DEGATS_SUP = 30;
 
-    public function __construct(string $nom, string $type, int $pointsDeVie, int $pointsAttaque, int $defense, string $nomCapaciteSpeciale)
+    public function __construct(string $nom, string $type, int $pointsDeVie, int $pointsAttaque, int $defense, Capacite $capaciteNormale, Capacite $capaciteSpeciale)
     {
         $this->nom = $nom;
         $this->type = $type;
         $this->pointsDeVie = $pointsDeVie;
         $this->pointsAttaque = $pointsAttaque;
         $this->defense = $defense;
-        $this->nomCapaciteSpeciale = $nomCapaciteSpeciale;
+        $this->capaciteNormale = $capaciteNormale;
+        $this->capaciteSpeciale = $capaciteSpeciale;
     }
 
-    public function attaquer($adversaire): void
+    public function utiliserAttaqueSpeciale($adversaire)
     {
-        $adversaire->recevoirDegats($this->pointsAttaque - $adversaire->defense);
+        $this->capaciteSpeciale($adversaire);
+    }
+
+    public function utiliserAttaqueNormale($adversaire)
+    {
+        $this->attaquer($adversaire, $this->capaciteNormale->getDegats());
+    }
+
+    public function attaquer($adversaire, $degats): void
+    {
+        $adversaire->recevoirDegats($degats - $adversaire->defense);
     }
 
     public function recevoirDegats($degats): void
@@ -38,11 +52,6 @@ abstract class Pokemon
 
     abstract public function capaciteSpeciale($adversaire): void;
 
-    public function getNomCapaciteSpeciale(): string
-    {
-        return $this->nomCapaciteSpeciale;
-    }
-
     public function getNom(): string
     {
         return $this->nom;
@@ -50,57 +59,60 @@ abstract class Pokemon
 
     public function getPointsDeVie(): string
     {
-
         return $this->pointsDeVie;
     }
 }
 
 class PokemonFeu extends Pokemon
 {
-    public function __construct(string $nom, int $pointsDeVie, int $pointsAttaque, int $defense)
+    public function __construct(string $nom, int $pointsDeVie, int $pointsAttaque, int $defense, Capacite $capacite)
     {
-        parent::__construct($nom, 'Feu', $pointsDeVie, $pointsAttaque, $defense, 'Lance-Flammes');
+        parent::__construct($nom, 'feu', $pointsDeVie, $pointsAttaque, $defense, $capacite, new CapaciteSpecialeFeu());
     }
 
     public function capaciteSpeciale($adversaire): void
     {
         if ($adversaire->type == 'Plante') {
-            $adversaire->recevoirDegats($this->pointsAttaque + self::DEGATS_SUP);
-            var_dump($this->pointsAttaque);
-            var_dump($adversaire->pointsDeVie);
-            var_dump(self::DEGATS_SUP);
+            $degats = $this->capaciteSpeciale->getDegats() + self::DEGATS_SUP;
         } else {
-            $adversaire->recevoirDegats($this->pointsAttaque);
+            $degats = $this->capaciteSpeciale->getDegats();
         }
+        $this->attaquer($adversaire, $degats);
     }
 }
 
 class PokemonEau extends Pokemon
 {
-    public function __construct(string $nom, int $pointsDeVie, int $pointsAttaque, int $defense)
+    public function __construct(string $nom, int $pointsDeVie, int $pointsAttaque, int $defense, Capacite $capacite)
     {
-        parent::__construct($nom, 'Eau', $pointsDeVie, $pointsAttaque, $defense, 'Hydrocanon');
+        parent::__construct($nom, 'eau', $pointsDeVie, $pointsAttaque, $defense, $capacite, new CapaciteSpecialeEau());
     }
 
     public function capaciteSpeciale($adversaire): void
     {
-        if ($adversaire->type == 'Feu') {
-            $adversaire->recevoirDegats($this->pointsAttaque + self::DEGATS_SUP);
+        if ($adversaire->type == 'feu') {
+            $degats = $this->capaciteSpeciale->getDegats() + self::DEGATS_SUP;
+        } else {
+            $degats = $this->capaciteSpeciale->getDegats();
         }
+        $this->attaquer($adversaire, $degats);
     }
 }
 
 class PokemonPlante extends Pokemon
 {
-    public function __construct(string $nom, int $pointsDeVie, int $pointsAttaque, int $defense)
+    public function __construct(string $nom, int $pointsDeVie, int $pointsAttaque, int $defense, Capacite $capacite)
     {
-        parent::__construct($nom, 'Plante', $pointsDeVie, $pointsAttaque, $defense, 'Fouet-Lianes');
+        parent::__construct($nom, 'plante', $pointsDeVie, $pointsAttaque, $defense, $capacite, new CapaciteSpecialePlante());
     }
 
     public function capaciteSpeciale($adversaire): void
     {
-        if ($adversaire->type == 'Eau') {
-            $adversaire->recevoirDegats($this->pointsAttaque + self::DEGATS_SUP);
+        if ($adversaire->type == 'eau') {
+            $degats = $this->capaciteSpeciale->getDegats() + self::DEGATS_SUP;
+        } else {
+            $degats = $this->capaciteSpeciale->getDegats();
         }
+        $this->attaquer($adversaire, $degats);
     }
 }

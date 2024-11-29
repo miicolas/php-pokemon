@@ -1,7 +1,7 @@
 <?php
 
-interface CombattantInterface
+interface Combattant
 {
-    public function seBattre(): void;
-    public function utiliserAttaqueSpéciale(): void;
+    // public function seBattre(): void;
+    public function utiliserAttaqueSpeciale($adversaire);
 }
