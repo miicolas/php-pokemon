@@ -73,6 +73,7 @@ abstract class Pokemon implements Combattant
     {
         return $this->pointsDeVie;
     }
+
 }
 
 class PokemonFeu extends Pokemon
@@ -95,6 +96,10 @@ class PokemonFeu extends Pokemon
             $degats = $this->capaciteSpeciale->getDegats();
         }
         $this->attaquer($adversaire, $degats);
+    }
+    public function getCapaciteSpeciale(): string
+    {
+        return $this->capaciteSpeciale->getNom();
     }
 }
 
@@ -119,6 +124,10 @@ class PokemonEau extends Pokemon
         }
         $this->attaquer($adversaire, $degats);
     }
+    public function getCapaciteSpeciale(): string
+    {
+        return $this->capaciteSpeciale->getNom();
+    }
 }
 
 class PokemonPlante extends Pokemon
@@ -141,5 +150,9 @@ class PokemonPlante extends Pokemon
             $degats = $this->capaciteSpeciale->getDegats();
         }
         $this->attaquer($adversaire, $degats);
+    }
+    public function getCapaciteSpeciale(): string
+    {
+        return $this->capaciteSpeciale->getNom();
     }
 }

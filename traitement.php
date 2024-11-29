@@ -3,6 +3,8 @@
 session_start();
 
 require_once "class/Pokemon.php";
+require_once "class/Capacite.php";
+require_once "class/Combat.php";
 
 if (!isset($_POST["action"]) || empty($_POST["action"])) {
     die("Action non définie");
@@ -35,3 +37,5 @@ if ($_POST["action"] == "attaque") {
 } else {
     die("Action non reconnue");
 }
+
+?>
