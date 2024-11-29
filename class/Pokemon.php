@@ -39,7 +39,12 @@ abstract class Pokemon implements Combattant
 
     public function utiliserAttaqueNormale($adversaire)
     {
-        $this->attaquer($adversaire, $this->capaciteNormale->getDegats());
+        $precision = $this->capaciteNormale->getPrecision();
+        if (rand(0, 100) <= $precision) {
+            $this->attaquer($adversaire, $this->capaciteNormale->getDegats());
+        } else {
+            echo 'Attaque ratée';
+        }
     }
 
     public function attaquer($adversaire, $degats): void
@@ -52,7 +57,7 @@ abstract class Pokemon implements Combattant
         $this->pointsDeVie -= $degats;
     }
 
-    public function estKO()
+    public function estKO(): bool
     {
         return $this->pointsDeVie <= 0;
     }
@@ -79,6 +84,11 @@ class PokemonFeu extends Pokemon
 
     public function capaciteSpeciale($adversaire): void
     {
+        $precision = $this->capaciteSpeciale->getPrecision();
+        if (rand(0, 100 > $precision) || rand(0, 100) > $precision) {
+            echo 'Attaque ratée';
+            return;
+        }
         if ($adversaire->type == 'Plante') {
             $degats = $this->capaciteSpeciale->getDegats() + self::DEGATS_SUP;
         } else {
@@ -97,6 +107,11 @@ class PokemonEau extends Pokemon
 
     public function capaciteSpeciale($adversaire): void
     {
+        $precision = $this->capaciteSpeciale->getPrecision();
+        if (rand(0, 100 > $precision) || rand(0, 100) > $precision) {
+            echo 'Attaque ratée';
+            return;
+        }
         if ($adversaire->type == 'feu') {
             $degats = $this->capaciteSpeciale->getDegats() + self::DEGATS_SUP;
         } else {
@@ -115,6 +130,11 @@ class PokemonPlante extends Pokemon
 
     public function capaciteSpeciale($adversaire): void
     {
+        $precision = $this->capaciteSpeciale->getPrecision();
+        if (rand(0, 100 > $precision) || rand(0, 100) > $precision) {
+            echo 'Attaque ratée';
+            return;
+        }
         if ($adversaire->type == 'eau') {
             $degats = $this->capaciteSpeciale->getDegats() + self::DEGATS_SUP;
         } else {
