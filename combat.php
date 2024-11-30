@@ -91,18 +91,19 @@ $_SESSION['pokemon2'] = serialize($pokemon2);
         <div class="flex gap-1">
             <p>Attaques:</p>
             <form action="traitement.php" method="post" id="pokemons_form" class="flex flex-col gap-4 items-center">
-
                 <ul>
-
                     <?php
                     foreach ($pokemon1Data['attaques'] as $attaque) {
-                        echo "<li><button type='submit' name='pokemon2'>" . htmlspecialchars($attaque['nom']) . " (Dégâts: " . htmlspecialchars($attaque['degats']) . ", Précision: " . htmlspecialchars($attaque['precision']) . ")</button></li>";
+                        echo "<li><input type='hidden' name='action' value='attaque'><input type='hidden' name='attaquant' value='1'><input type='hidden' name='defenseur' value='2'><input type='hidden' name='special' value='false'><button type='submit' name='pokemon1'>" . htmlspecialchars($attaque['nom']) . " (Dégâts: " . htmlspecialchars($attaque['degats']) . ", Précision: " . htmlspecialchars($attaque['precision']) . ")</button></li>";
                     }
+                    echo "<li><input type='hidden' name='action' value='attaque'><input type='hidden' name='attaquant' value='1'><input type='hidden' name='defenseur' value='2'><input type='hidden' name='special' value='true'><button type='submit' name='pokemon1'>" . $pokemon1->getCapaciteSpeciale() . "</button></li>";
                     ?>
                 </ul>
             </form>
         </div>
     </div>
+
+    <!-- Joueur 2 -->
     <div class="flex flex-col gap-2">
         <h2 class="text-2xl font-bold">Joueur 2</h2>
         <div class="flex gap-1">
