@@ -36,7 +36,6 @@ $getPokemon2 = $_POST['pokemon2'];
 session_start();
 
 
-
 echo $getPokemon1;
 echo $getPokemon2;
 
@@ -77,26 +76,29 @@ $_SESSION['pokemon2'] = serialize($pokemon2);
 
 ?>
 
-<div class="flex flex-col gap-4">
+<div class="flex justify-around w-full gap-4">
     <div class="flex flex-col gap-2">
         <h2 class="text-2xl font-bold">Joueur 1</h2>
         <div class="flex gap-1">
-            <div class="flex gap-1">
+            <div class="flex  flex-col gap-1 w-full">
                 <?php
                 echo "<p>" . $pokemon1->getNom() . "</p>";
-                echo "<p>" . $pokemon1->getPointsDeVie() . "/500</p>";
-                ?>
+                echo "<div class='w-full bg-gray-300 rounded-full h-6 overflow-hidden p-1'>
+        <div class='bg-blue-400 h-full text-center text-white rounded-full' style='width: " . ($pokemon1->getPointsDeVie() / 500 * 100) . "%;'>
+            " . $pokemon1->getPointsDeVie() . "/500
+        </div>
+      </div>"; ?>
             </div>
         </div>
-        <div class="flex gap-1">
-            <p>Attaques:</p>
+        <div class="flex flex-col gap-2">
+            <p>Choisis ton attaque</p>
             <form action="traitement.php" method="post" id="pokemons_form" class="flex flex-col gap-4 items-center">
-                <ul>
+                <ul class="flex gap-2 items-center">
                     <?php
                     foreach ($pokemon1Data['attaques'] as $attaque) {
-                        echo "<li><input type='hidden' name='action' value='attaque'><input type='hidden' name='attaquant' value='1'><input type='hidden' name='defenseur' value='2'><input type='hidden' name='special' value='false'><button type='submit' name='pokemon1'>" . htmlspecialchars($attaque['nom']) . " (Dégâts: " . htmlspecialchars($attaque['degats']) . ", Précision: " . htmlspecialchars($attaque['precision']) . ")</button></li>";
+                        echo "<li><input type='hidden' name='action' value='attaque'><input type='hidden' name='attaquant' value='1'><input type='hidden' name='defenseur' value='2'><input type='hidden' name='special' value='false'><button type='submit' name='pokemon1' class='bg-[#222] text-white rounded-lg py-2 px-4 w-fit'>" . htmlspecialchars($attaque['nom']) . " (Dégâts: " . htmlspecialchars($attaque['degats']) . ", Précision: " . htmlspecialchars($attaque['precision']) . ")</button></li>";
                     }
-                    echo "<li><input type='hidden' name='action' value='attaque'><input type='hidden' name='attaquant' value='1'><input type='hidden' name='defenseur' value='2'><input type='hidden' name='special' value='true'><button type='submit' name='pokemon1'>" . $pokemon1->getCapaciteSpeciale() . "</button></li>";
+                    echo "<li><input type='hidden' name='action' value='attaque'><input type='hidden' name='attaquant' value='1'><input type='hidden' name='defenseur' value='2'><input type='hidden' name='special' value='true'><button type='submit' name='pokemon1' class='bg-[#DDF3FF] border-2 border-[#00AFED] text-[#00AFED] font-bold rounded-lg py-2 px-4 w-fit'>" . $pokemon1->getCapaciteSpeciale() . "</button></li>";
                     ?>
                 </ul>
             </form>
@@ -107,25 +109,28 @@ $_SESSION['pokemon2'] = serialize($pokemon2);
     <div class="flex flex-col gap-2">
         <h2 class="text-2xl font-bold">Joueur 2</h2>
         <div class="flex gap-1">
-            <div class="flex gap-1">
+            <div class="flex  flex-col gap-1 w-full">
                 <?php
                 echo "<p>" . $pokemon2->getNom() . "</p>";
-                echo "<p>" . $pokemon2->getPointsDeVie() . "/500</p>";
-                ?>
+                echo "<div class='w-full bg-gray-300 rounded-full h-6 overflow-hidden p-1'>
+        <div class='bg-red-400 h-full text-center text-white rounded-full' style='width: " . ($pokemon2->getPointsDeVie() / 500 * 100) . "%;'>
+            " . $pokemon2->getPointsDeVie() . "/500
+        </div>
+      </div>"; ?>
             </div>
         </div>
-        <div class="flex gap-1">
-            <p>Attaques:</p>
+        <div class="flex flex-col gap-2">
+            <p>Choisis ton attauqe</p>
             <form action="traitement.php" method="post" id="pokemons_form" class="flex flex-col gap-4 items-center">
 
-                <ul>
+                <ul class="flex gap-2 items-center">
 
                     <?php
                     foreach ($pokemon2Data['attaques'] as $attaque) {
-                        echo "<li><input type='hidden' name='action' value='attaque'><input type='hidden' name='attaquant' value='2'><input type='hidden' name='defenseur' value='1'> <input type='hidden' name='special' value='false'><button type='submit' name='pokemon2'>" . htmlspecialchars($attaque['nom']) . " (Dégâts: " . htmlspecialchars($attaque['degats']) . ", Précision: " . htmlspecialchars($attaque['precision']) . ")</button></li>";
+                        echo "<li><input type='hidden' name='action' value='attaque'><input type='hidden' name='attaquant' value='2'><input type='hidden' name='defenseur' value='1'> <input type='hidden' name='special' value='false'><button type='submit' name='pokemon2' class='bg-[#222] text-white rounded-lg py-2 px-4 w-fit'>" . htmlspecialchars($attaque['nom']) . " (Dégâts: " . htmlspecialchars($attaque['degats']) . ", Précision: " . htmlspecialchars($attaque['precision']) . ")</button></li>";
                     }
 
-                    echo "<li><input type='hidden' name='action' value='attaque'><input type='hidden' name='attaquant' value='2'><input type='hidden' name='defenseur' value='1'> <input type='hidden' name='special' value='true'><button type='submit' name='pokemon2'>" . $pokemon2->getCapaciteSpeciale() . "</button></li>";
+                    echo "<li><input type='hidden' name='action' value='attaque'><input type='hidden' name='attaquant' value='2'><input type='hidden' name='defenseur' value='1'> <input type='hidden' name='special' value='true'><button type='submit' name='pokemon2' class='bg-[#FFF4DD] border-2 border-[#FFB552] text-[#FFB552] font-bold rounded-lg py-2 px-4 w-fit'>" . $pokemon2->getCapaciteSpeciale() . "</button></li>";
                     ?>
 
                 </ul>
