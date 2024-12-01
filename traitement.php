@@ -24,6 +24,8 @@ if (isset($_SESSION["combat"])) {
     $combat->demarrerCombat();
 }
 
+var_dump($combat);
+
 if ($_POST["action"] == "attaque") {
     $attaquant = $_POST["attaquant"];
     $defenseur = $_POST["defenseur"];
@@ -34,8 +36,8 @@ if ($_POST["action"] == "attaque") {
     $_SESSION["pokemon1"] = serialize($pokemon1);
     $_SESSION["pokemon2"] = serialize($pokemon2);
     $_SESSION["combat"] = serialize($combat);
+    header("Location: combat.php");
+    exit();
 } else {
     die("Action non reconnue");
 }
-
-?>
