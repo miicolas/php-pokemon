@@ -14,6 +14,16 @@ class Combat
         $this->pokemon2 = $pokemon2;
     }
 
+    public function getVainqueur(): int
+    {
+        return $this->vainqueur;
+    }
+
+    public function getTurn(): int
+    {
+        return $this->turn;
+    }
+
     public function demarrerCombat()
     {
         // $this->turn = rand(1, 2);
@@ -53,12 +63,30 @@ class Combat
         return [$this->pokemon1, $this->pokemon2];
     }
 
+    public function tourDeSoin(int $cible)
+    {
+        if ($this->turn != $cible) {
+            die("Ce n'est pas à vous de jouer");
+        }
+        if ($cible == "1") {
+            $this->pokemon1->seSoigner(50);
+            $this->turn = 2;
+            return $this->pokemon1;
+        } else {
+            $this->pokemon2->seSoigner(50);
+            $this->turn = 1;
+            return $this->pokemon2;
+        }
+    }
+
     public function determinerVainqueur()
     {
         if ($this->pokemon1->estKO()) {
+            $this->pokemon1->minPointsDeVie();
             $this->vainqueur = 2;
             return;
         } elseif ($this->pokemon2->estKO()) {
+            $this->pokemon2->minPointsDeVie();
             $this->vainqueur = 1;
             return;
         } else {

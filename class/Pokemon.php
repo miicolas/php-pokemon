@@ -30,6 +30,10 @@ abstract class Pokemon implements Combattant
     public function seSoigner($pv)
     {
         $this->soigner($pv);
+        if ($this->pointsDeVie > 500) {
+            $this->pointsDeVie = 500;
+        }
+        return $this;
     }
 
     public function utiliserAttaqueSpeciale($adversaire)
@@ -77,6 +81,10 @@ abstract class Pokemon implements Combattant
     public function getPointsDeVie(): int
     {
         return $this->pointsDeVie;
+    }
+    public function minPointsDeVie(): void
+    {
+        $this->pointsDeVie = 0;
     }
 }
 

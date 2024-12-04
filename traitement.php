@@ -38,6 +38,16 @@ if ($_POST["action"] == "attaque") {
     $_SESSION["combat"] = serialize($combat);
     header("Location: combat.php");
     exit();
+} elseif ($_POST["action"] == "soin") {
+    $cible = $_POST["cible"];
+    $resultat = $combat->tourDeSoin($cible);
+    if ($cible == "1") {
+        $_SESSION["pokemon1"] = serialize($resultat);
+    } else {
+        $_SESSION["pokemon2"] = serialize($resultat);
+    }
+    $_SESSION['combat'] = serialize($combat);
+    header("Location: combat.php");
 } else {
     die("Action non reconnue");
 }
