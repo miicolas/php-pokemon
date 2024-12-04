@@ -30,6 +30,10 @@ abstract class Pokemon implements Combattant
     public function seSoigner($pv)
     {
         $this->soigner($pv);
+        if ($this->pointsDeVie > 500) {
+            $this->pointsDeVie = 500;
+        }
+        return $this;
     }
 
     public function utiliserAttaqueSpeciale($adversaire)
@@ -64,16 +68,24 @@ abstract class Pokemon implements Combattant
 
     abstract public function capaciteSpeciale($adversaire): void;
 
+    public function getCapaciteNormale()
+    {
+        return $this->capaciteNormale;
+    }
+
     public function getNom(): string
     {
         return $this->nom;
     }
 
-    public function getPointsDeVie(): string
+    public function getPointsDeVie(): int
     {
         return $this->pointsDeVie;
     }
-
+    public function minPointsDeVie(): void
+    {
+        $this->pointsDeVie = 0;
+    }
 }
 
 class PokemonFeu extends Pokemon
@@ -90,7 +102,7 @@ class PokemonFeu extends Pokemon
             echo 'Attaque ratée';
             return;
         }
-        if ($adversaire->type == 'Plante') {
+        if ($adversaire->type == 'plante') {
             $degats = $this->capaciteSpeciale->getDegats() + self::DEGATS_SUP;
         } else {
             $degats = $this->capaciteSpeciale->getDegats();

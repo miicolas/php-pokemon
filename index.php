@@ -15,9 +15,10 @@ require_once './class/Attaque.php';
 <div class="mx-auto">
     <h1 class="text-3xl font-bold text-center">
         Sélectionne tes <br/>
-        <span>Pokemons
-                <img src="./assets/pokeball.svg" alt="Pokeball" class="inline-block w-6 h-6">
-            </span>
+        <span>
+            Pokemons
+            <img src="./assets/pokeball.svg" alt="Pokeball" class="inline-block w-6 h-6">
+        </span>
     </h1>
 </div>
 

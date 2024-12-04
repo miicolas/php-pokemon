@@ -24,18 +24,30 @@ if (isset($_SESSION["combat"])) {
     $combat->demarrerCombat();
 }
 
+var_dump($combat);
+
 if ($_POST["action"] == "attaque") {
     $attaquant = $_POST["attaquant"];
     $defenseur = $_POST["defenseur"];
     $special = $_POST["special"] == "true";
 
-    $combat->tourDeCombat($attaquant, $defenseur, $special);
+    $combat_result = $combat->tourDeCombat($attaquant, $defenseur, $special);
 
-    $_SESSION["pokemon1"] = serialize($pokemon1);
-    $_SESSION["pokemon2"] = serialize($pokemon2);
+    $_SESSION["pokemon1"] = serialize($combat_result[0]);
+    $_SESSION["pokemon2"] = serialize($combat_result[1]);
     $_SESSION["combat"] = serialize($combat);
+    header("Location: combat.php");
+    exit();
+} elseif ($_POST["action"] == "soin") {
+    $cible = $_POST["cible"];
+    $resultat = $combat->tourDeSoin($cible);
+    if ($cible == "1") {
+        $_SESSION["pokemon1"] = serialize($resultat);
+    } else {
+        $_SESSION["pokemon2"] = serialize($resultat);
+    }
+    $_SESSION['combat'] = serialize($combat);
+    header("Location: combat.php");
 } else {
     die("Action non reconnue");
 }
-
-?>
