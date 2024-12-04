@@ -49,6 +49,8 @@ class Combat
             $this->turn = 1;
             $this->determinerVainqueur();
         }
+
+        return [$this->pokemon1, $this->pokemon2];
     }
 
     public function determinerVainqueur()
