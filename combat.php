@@ -161,7 +161,7 @@ $_SESSION['pokemon2'] = serialize($pokemon2);
             <?php endif; ?>
             <button type="button" id="quitter"
                 class="bg-red-500 hover:bg-red-700 h-fit text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-200"
-                ick="window.location.href='destroy.php'">Quitter
+                onclick="window.location.href='destroy.php'">Quitter
             </button>
             <?php if (isset($combat) && $combat->getVainqueur() != 0): ?>
                 <script>
